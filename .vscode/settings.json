@@ -65,6 +65,7 @@
     "explorer.fileNesting.enabled": true,
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj",
+        "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Game_Jam_AvoidF.sln"
+    "dotnet.defaultSolution": "Game_Jam_2025_Avoid.slnx"
 }
