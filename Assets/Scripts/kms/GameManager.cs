@@ -1,4 +1,4 @@
-    using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameTimer timer;
 
     public KatalkPopUp katalkPopUp;
+    public Task_Manager taskManager;
 
     public AdPopUp[] adPopUps;
 
@@ -72,9 +73,8 @@ public class GameManager : MonoBehaviour
 
         if (timer != null && !timer.IsRunning && timer.RemainingSeconds <= 0f)
         {
-
-            StopGame();
-
+           
+            taskManager.Evaluate();
         }
 
     }
@@ -198,7 +198,7 @@ public class GameManager : MonoBehaviour
         while (isPlaying)
         {
 
-            float waitTime = Random.Range(1f, 4f);
+            float waitTime = Random.Range(3f, 5f);
             yield return new WaitForSeconds(waitTime);
 
             if (ad.IsShown)

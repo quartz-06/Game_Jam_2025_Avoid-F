@@ -1,10 +1,12 @@
 using System;
+using JetBrains.Annotations;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Events;
 public class Task_Manager : MonoBehaviour
 {
     public Bar_Manager Progress_UI;
+    public GameManager gameManager;
     public float Current_percentage=0f; 
     public float upPercentage=0.3f;
     public GameObject pannel;
@@ -34,9 +36,26 @@ public class Task_Manager : MonoBehaviour
         {
             Current_percentage=100f;
             gamePannel.gameObject.SetActive(false);
-            Finish_Game(0);
+            Evaluate();
         }
     }
+    
+    public void Evaluate()
+    {
+        gameManager.StopGame();
+        if(Current_percentage>=100f)
+        {
+            Current_percentage=100f;
+            gamePannel.gameObject.SetActive(false);
+            Finish_Game(0);
+        }
+        else
+        {
+            gamePannel.gameObject.SetActive(false);
+            Finish_Game(1);
+        }
+    }
+
     private void Finish_Game(int iswin)
     {
         Is_Finished=true;

@@ -27,7 +27,7 @@ public class Result_Controller : MonoBehaviour
     {  Intro_Text.text="";
         Intro_Text.gameObject.SetActive(true);
         Intro_Text.transform.localScale=Vector3.one;
-        if(iswin==1)
+        if(iswin==0)
             Result_Text.text=successText;
         else
             Result_Text.text=failText;
