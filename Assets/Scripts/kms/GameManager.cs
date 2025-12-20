@@ -27,18 +27,32 @@ public class GameManager : MonoBehaviour
     [Header("FMOD - HeartBeat")]
     public EventReference heartBeatEvent;
 
+
+
+    [Header("FMOD - BGM")]
+    public EventReference bgmEvent;
+
+
+
+    [Header("FMOD - Parameter")]
+    public string heartRateParameterName = "HeartRate";
+
+
+
+    [Header("HeartRate Range")]
     [Range(60f, 160f)]
     public float heartRateMin = 60f;
 
     [Range(60f, 160f)]
     public float heartRateMax = 160f;
 
-    public string heartRateParameterName = "HeartRate";
 
-    [Header("HeartBeat Smoothing")]
+
+    [Header("HeartRate Smoothing")]
     public float heartRateSmoothSpeed = 5f;
 
     private float currentHeartRate = 60f;
+
 
 
     private bool isPlaying = false;
@@ -55,7 +69,10 @@ public class GameManager : MonoBehaviour
 
     // FMOD
     private EventInstance heartBeatInstance;
+    private EventInstance bgmInstance;
+
     private bool isHeartBeatPlaying = false;
+    private bool isBgmPlaying = false;
 
 
 
@@ -86,6 +103,7 @@ public class GameManager : MonoBehaviour
         isPlaying = false;
 
         StopHeartBeat();
+        StopBgm();
 
     }
 
@@ -101,7 +119,7 @@ public class GameManager : MonoBehaviour
 
         }
 
-        UpdateHeartBeatParameter();
+        UpdateHeartRateParameter();
 
         if (timer != null && !timer.IsRunning && timer.RemainingSeconds <= 0f)
         {
@@ -157,6 +175,7 @@ public class GameManager : MonoBehaviour
         StartAdPopupsIndependently();
 
         StartHeartBeat();
+        StartBgm();
 
     }
 
@@ -203,6 +222,7 @@ public class GameManager : MonoBehaviour
         }
 
         StopHeartBeat();
+        StopBgm();
 
     }
 
@@ -408,7 +428,42 @@ public class GameManager : MonoBehaviour
 
 
     // ---------------------------
-    // ▼ FMOD HeartBeat
+    // ▼ FMOD HeartRate 공유 업데이트
+    // - HeartBeat / BGM 둘 다 HeartRate 파라미터로 움직이므로
+    //   파라미터 업데이트를 하나로 통합
+    // ---------------------------
+
+    private void UpdateHeartRateParameter()
+    {
+
+        float targetHR = CalculateHeartRate();
+
+        currentHeartRate = Mathf.Lerp(
+            currentHeartRate,
+            targetHR,
+            Time.deltaTime * heartRateSmoothSpeed
+        );
+
+        if (isHeartBeatPlaying)
+        {
+
+            heartBeatInstance.setParameterByName(heartRateParameterName, currentHeartRate);
+
+        }
+
+        if (isBgmPlaying)
+        {
+
+            bgmInstance.setParameterByName(heartRateParameterName, currentHeartRate);
+
+        }
+
+    }
+
+
+
+    // ---------------------------
+    // ▼ FMOD - HeartBeat
     // ---------------------------
 
     private void StartHeartBeat()
@@ -431,8 +486,10 @@ public class GameManager : MonoBehaviour
 
         heartBeatInstance = RuntimeManager.CreateInstance(heartBeatEvent);
 
-        int initialHR = CalculateHeartRate();
-        heartBeatInstance.setParameterByName(heartRateParameterName, initialHR);
+        float initialHR = CalculateHeartRate();
+        currentHeartRate = initialHR;
+
+        heartBeatInstance.setParameterByName(heartRateParameterName, currentHeartRate);
 
         heartBeatInstance.start();
         isHeartBeatPlaying = true;
@@ -460,35 +517,66 @@ public class GameManager : MonoBehaviour
 
 
 
-    private void UpdateHeartBeatParameter()
+    // ---------------------------
+    // ▼ FMOD - BGM
+    // ---------------------------
+
+    private void StartBgm()
     {
-        if (!isHeartBeatPlaying)
+
+        if (isBgmPlaying)
         {
+
             return;
+
         }
 
-        float targetHR = CalculateHeartRate();
+        if (bgmEvent.IsNull)
+        {
 
-        currentHeartRate = Mathf.Lerp(
-            currentHeartRate,
-            targetHR,
-            Time.deltaTime * heartRateSmoothSpeed
-        );
+            Debug.LogWarning("[GameManager] bgmEvent is not assigned.");
+            return;
 
-        heartBeatInstance.setParameterByName(
-            heartRateParameterName,
-            currentHeartRate
-        );
+        }
+
+        bgmInstance = RuntimeManager.CreateInstance(bgmEvent);
+
+        float initialHR = CalculateHeartRate();
+        currentHeartRate = initialHR;
+
+        bgmInstance.setParameterByName(heartRateParameterName, currentHeartRate);
+
+        bgmInstance.start();
+        isBgmPlaying = true;
+
     }
 
+
+
+    private void StopBgm()
+    {
+
+        if (!isBgmPlaying)
+        {
+
+            return;
+
+        }
+
+        bgmInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        bgmInstance.release();
+
+        isBgmPlaying = false;
+
+    }
 
 
 
     // HR = 60 + 80 * (p/100)^1.5 + 20 * d * (p/100)
     // p : Current_percentage (0~100)
     // d : isDistraction -> true = 1, false = 0
-    // 결과 : 60~160 사이 정수
-    private int CalculateHeartRate()
+    // 결과 : 60~160 사이 정수(내부적으로는 float로 다룸)
+    private float CalculateHeartRate()
     {
 
         float p = 0f;
@@ -518,7 +606,7 @@ public class GameManager : MonoBehaviour
 
         hr = Mathf.Clamp(hr, heartRateMin, heartRateMax);
 
-        return Mathf.RoundToInt(hr);
+        return hr;
 
     }
 
@@ -528,6 +616,7 @@ public class GameManager : MonoBehaviour
     {
 
         StopHeartBeat();
+        StopBgm();
 
     }
 
@@ -537,8 +626,8 @@ public class GameManager : MonoBehaviour
     {
 
         StopHeartBeat();
+        StopBgm();
 
     }
 
 }
-

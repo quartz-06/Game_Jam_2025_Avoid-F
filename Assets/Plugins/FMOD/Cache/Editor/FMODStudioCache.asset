@@ -70,10 +70,10 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/HeartBeat/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639018519537898480
+  lastModified: 639018604046615998
   FileSizes:
   - Name: Desktop
-    Value: 221248
+    Value: 1403456
   Exists: 1
 --- !u!114 &-3901920273676673895
 MonoBehaviour:
@@ -145,18 +145,49 @@ MonoBehaviour:
   EditorEvents:
   - {fileID: -8861602442551222563}
   - {fileID: -3635030113814014292}
+  - {fileID: 2826060484664997945}
   EditorParameters: []
   MasterBanks:
   - {fileID: -6110732539599888688}
   StringsBanks:
   - {fileID: 6605042270781459422}
   cacheVersion: 131857
-  cacheTime: 639018519537898480
+  cacheTime: 639018604046641083
   SerializableEventsDict:
   - key: event:/MouseClick
     index: 0
   - key: event:/HeartBeat
     index: 1
+  - key: event:/BGM
+    index: 2
+--- !u!114 &2826060484664997945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BGM
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/BGM
+  Guid:
+    Data1: 132933118
+    Data2: 1099602801
+    Data3: 765808029
+    Data4: 210505168
+  Banks:
+  - {fileID: -6110732539599888688}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 7451531377480904601}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 92010
 --- !u!114 &6605042270781459422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,8 +203,32 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/HeartBeat/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639018519537898480
+  lastModified: 639018604046641083
   FileSizes:
   - Name: Desktop
-    Value: 1022
+    Value: 1056
+  Exists: 1
+--- !u!114 &7451531377480904601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/BGM/HeartRate
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: HeartRate
+  StudioPath: 
+  Min: 60
+  Max: 160
+  Default: 60
+  ID:
+    data1: 2414916056
+    data2: 2406768982
+  Type: 0
+  IsGlobal: 0
+  Labels: []
   Exists: 1

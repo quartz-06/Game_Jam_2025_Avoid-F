@@ -117,6 +117,8 @@ public class AdPopUp : MonoBehaviour
     public void ShowAt(Transform spawnPoint)
     {
 
+
+
         if (isShown || spawnPoint == null)
         {
 

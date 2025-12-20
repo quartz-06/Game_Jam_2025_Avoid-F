@@ -59,6 +59,8 @@ public class KatalkPopUp : MonoBehaviour
     public void Show()
     {
 
+
+
         if (isShown)
         {
 
