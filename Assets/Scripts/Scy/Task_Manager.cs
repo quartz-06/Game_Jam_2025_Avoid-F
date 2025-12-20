@@ -146,6 +146,12 @@ public class Task_Manager : MonoBehaviour
         return;
         CheckDistractionState();
         DistractionHandler();
+        if (totalClickCount > 0 && Time.time - lastClickTime > feverBetweenTime)
+        {
+            totalClickCount = 0;
+            clickCount = 0;
+            Progress_UI.UpdateCombo(0);
+        }
     }
     public void CheckDistractionState()
     {
@@ -234,19 +240,33 @@ public class Task_Manager : MonoBehaviour
 
         private void TrackFever()
     {
-        if(isFever) return;
-        if(Time.time-lastClickTime>feverBetweenTime)
+        if(isFever)
         {
-            clickCount=0;
-            totalClickCount=0;
+            if(Time.time-lastClickTime>feverBetweenTime)
+             {
+                clickCount=0;
+                totalClickCount=0;
+            }
+                totalClickCount++;
+                lastClickTime=Time.time;
+                Progress_UI.UpdateCombo(totalClickCount);
         }
-        clickCount++;
-        totalClickCount++;
-        lastClickTime=Time.time;
-        Progress_UI.UpdateCombo(totalClickCount);
-        if(clickCount>=20)
+        else
         {
-            StartCoroutine(FeverRoutin());
+            
+            if(Time.time-lastClickTime>feverBetweenTime)
+            {
+                clickCount=0;
+                totalClickCount=0;
+            }
+            clickCount++;
+            totalClickCount++;
+            lastClickTime=Time.time;
+            Progress_UI.UpdateCombo(totalClickCount);
+            if(clickCount>=20)
+            {
+                StartCoroutine(FeverRoutin());
+            }
         }
     }
     private IEnumerator FeverRoutin()

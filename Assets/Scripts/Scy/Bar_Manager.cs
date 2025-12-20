@@ -64,7 +64,7 @@ public class Bar_Manager : MonoBehaviour
                         valueText.text="정신이 산만해졌습니다.\n진행도가 깍입니다.";
                         valueText.color=Color.red;
                         valueText.fontStyle=FontStyle.Bold;
-                        return;
+                        break;
                     default:
                         break;
                 }
@@ -109,9 +109,12 @@ public class Bar_Manager : MonoBehaviour
         }
     }
     public void UpdateCombo(int clickcount)
-    {
-        comboText.text=$"{clickcount}";
-        if(clickcount%20==0)
+    {   
+        if(clickcount==0)
+            comboText.text="";
+        else
+         comboText.text=$"{clickcount}";
+        if(clickcount%20==0&&clickcount>0)
         {
             if(comboCorutin==null)
             {
