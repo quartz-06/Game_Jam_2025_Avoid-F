@@ -146,7 +146,7 @@ public class GameTimer : MonoBehaviour
         int seconds = totalCentiseconds / 100;
         int centiseconds = totalCentiseconds % 100;
 
-        mainText.text = $"과제 제출 마감까지{seconds:00}";
+        mainText.text = $"과제 제출 마감까지 {seconds:00}";
         subText.text = $".{centiseconds:00}";
 
         ApplyTimeColor_HardSteps();

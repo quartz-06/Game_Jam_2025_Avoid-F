@@ -10,7 +10,7 @@ public class Result_Controller : MonoBehaviour
     public Text Result_Text;
     public GameObject Restart_buttons;
     public string Intro_full_text="당신은 ";
-    public string successText="F학점에서 벗어났다!!";
+    public string successText="F학점에서 \n벗어났다!!";
     public string failText="F학점 확정!!";
     public float Wait_timer=3f;
     public float Type_timer=1f;
