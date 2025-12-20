@@ -2972,6 +2972,18 @@ MonoBehaviour:
   upPercentage: 1
   pannel: {fileID: 3883996589820063623}
   gamePannel: {fileID: 8151369374748119520}
+  clickEvent:
+    Guid:
+      Data1: -1936922069
+      Data2: 1263833904
+      Data3: 920192699
+      Data4: -684770040
+    Path: event:/MouseClick
+  clickParamName: Click Sounds
+  labelUnuse: Unuse
+  labelLow: LowClicks
+  labelHigh: HighClicks
+  urgentThreshold: 50
 --- !u!114 &7725212035845849120
 MonoBehaviour:
   m_ObjectHideFlags: 0
