@@ -95,6 +95,7 @@ public class Task_Manager : MonoBehaviour
    public float feverDuration=2f;
     public float lastClickTime;
     private int clickCount=0;
+    private int totalClickCount=0;
     [Header("distraction")]
     public int distractionCount=4;
     public float warringDuration=2f;
@@ -200,14 +201,13 @@ public class Task_Manager : MonoBehaviour
         }
         TrackFever();
         // 1) ����� ����
-        Current_percentage += upPercentage*(isDistraction? 1f:isFever? feverMultiply:1f);
+        Current_percentage += upPercentage*(isDistraction? 1f: Current_percentage>=80? 1.1f: isFever? feverMultiply:1f);
         Current_percentage = Mathf.Clamp(Current_percentage, 0f, 100f);
 
         // 2) UI ����
         if (Progress_UI != null)
         {
             Progress_UI.Update_Progress_Bar(Current_percentage,isDistraction? 3: isWrong ? 2: isFever? 1:0,true);
-
         }
         // 3) Ŭ�� ���� 1ȸ ��� (���� ���¿� �´� �Ķ���ͷ�)
         PlayClickOneShotByState();
@@ -238,9 +238,12 @@ public class Task_Manager : MonoBehaviour
         if(Time.time-lastClickTime>feverBetweenTime)
         {
             clickCount=0;
+            totalClickCount=0;
         }
         clickCount++;
+        totalClickCount++;
         lastClickTime=Time.time;
+        Progress_UI.UpdateCombo(totalClickCount);
         if(clickCount>=20)
         {
             StartCoroutine(FeverRoutin());
