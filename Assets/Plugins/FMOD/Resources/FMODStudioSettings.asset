@@ -380,11 +380,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 0
   HasPlatforms: 1
-
-  sourceProjectPath: "../../OneDrive - \uC22D\uC2E4\uB300\uD559\uAD50 - Soongsil
-    University/\uBB38\uC11C/FMOD Studio/HeartBeat/HeartBeat.fspro"
-  sourceBankPath: "../../OneDrive - \uC22D\uC2E4\uB300\uD559\uAD50 - Soongsil University/\uBB38\uC11C/FMOD
-    Studio/HeartBeat/Build"
+  sourceProjectPath: 
+  sourceBankPath: 
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
@@ -419,8 +416,8 @@ MonoBehaviour:
   SharedLibraryUpdateStage: 0
   SharedLibraryTimeSinceStart: 0
   CurrentVersion: 131634
-  HideSetupWizard: 1
-  LastEventReferenceScanVersion: 131634
+  HideSetupWizard: 0
+  LastEventReferenceScanVersion: 0
   Platforms:
   - {fileID: -7158797001925674591}
   - {fileID: -6350347004002673124}
@@ -434,7 +431,7 @@ MonoBehaviour:
   - {fileID: 6530796997376624785}
   - {fileID: 8744836575944475727}
   - {fileID: 9218243319257883887}
-  MigratedPlatforms: 0500000000000000060000000a0000000800000009000000120000000c000000150000000b0000000200000001000000
+  MigratedPlatforms: 000000000100000008000000050000000c000000120000000b0000000a00000002000000150000000600000009000000
 --- !u!114 &340913974645375319
 MonoBehaviour:
   m_ObjectHideFlags: 0

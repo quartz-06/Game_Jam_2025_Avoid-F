@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,8 +17,6 @@ public class GameManager : MonoBehaviour
 
     public GameObject hud;
 
-
-
     private bool isPlaying = false;
 
     private Coroutine katalkCoroutine;
@@ -27,7 +25,7 @@ public class GameManager : MonoBehaviour
 
 
 
-    // ÇöÀç »ç¿ë ÁßÀÎ ±¤°í ½ºÆù Æ÷ÀÎÆ®
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
     private HashSet<Transform> occupiedSpawnPoints = new HashSet<Transform>();
 
 
@@ -99,9 +97,8 @@ public class GameManager : MonoBehaviour
         {
 
             startPanel.SetActive(false);
-
+            
         }
-
         if (hud != null)
         {
 
@@ -195,8 +192,6 @@ public class GameManager : MonoBehaviour
 
     }
 
-
-
     private IEnumerator AdPopupLoop(AdPopUp ad)
     {
 
@@ -228,7 +223,7 @@ public class GameManager : MonoBehaviour
 
 
 
-    // »ç¿ë °¡´ÉÇÑ ½ºÆù Æ÷ÀÎÆ® ÇÏ³ª ¿äÃ»
+    // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ï³ï¿½ ï¿½ï¿½Ã»
     private Transform RequestSpawnPoint(Transform[] candidates)
     {
 
@@ -269,7 +264,7 @@ public class GameManager : MonoBehaviour
 
 
 
-    // ½ºÆù Æ÷ÀÎÆ® ¹ÝÈ¯
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½È¯
     public void ReleaseSpawnPoint(Transform point)
     {
 

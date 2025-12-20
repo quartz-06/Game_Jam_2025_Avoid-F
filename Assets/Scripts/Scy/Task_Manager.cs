@@ -1,3 +1,4 @@
+using System;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,14 +8,19 @@ public class Task_Manager : MonoBehaviour
     public float Current_percentage=0f; 
     public float upPercentage=0.3f;
     public GameObject pannel;
+    public GameObject gamePannel;
     private bool Is_Finished=false;
     // Start is called once before the first execution of Update after the MonoBehaviour is create
-    private void Start()
+    private void Awake()
     {
-        if(pannel!=null)
+        Is_Finished=false;
+         if(pannel!=null)
         {
             pannel.gameObject.SetActive(false);
         }
+    }
+    private void Start()
+    {
     }
     public void On_Click_Submit_Buttons()
     {
@@ -27,6 +33,7 @@ public class Task_Manager : MonoBehaviour
         if(Current_percentage>=100f)
         {
             Current_percentage=100f;
+            gamePannel.gameObject.SetActive(false);
             Finish_Game(0);
         }
     }
