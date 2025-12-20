@@ -17,6 +17,7 @@ public class Result_Controller : MonoBehaviour
     public float Size_multiply=2f;
     public float Animation_time=10f;
     public string mainScene;
+    public string Restart;
     public void Show(int iswin)
     {   
 
@@ -71,9 +72,12 @@ public class Result_Controller : MonoBehaviour
         Rect.transform.localScale=Vector3.one;
 
     }
-    public void OnClickRestart()
+    public void OnClickBackMain()
     {
         SceneManager.LoadScene(mainScene);
     }
-    
+     public void OnClickRestart()
+    {
+        SceneManager.LoadScene(Restart);
+    }
 }

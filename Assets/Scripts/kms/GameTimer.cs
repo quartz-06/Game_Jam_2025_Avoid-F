@@ -10,21 +10,21 @@ public class GameTimer : MonoBehaviour
     public float startSeconds = 60f;
 
     [Header("Color By Time (Hard Steps)")]
-    public Color normalColor = new Color(0.15f, 0.15f, 0.15f, 1f);     // Â£Àº È¸»ö(°ÅÀÇ °ËÁ¤)
-    public Color warningColor = new Color(1f, 0.35f, 0.0f, 1f);        // Â£Àº ÁÖÈ²(µö ¿À·»Áö)
-    public Color dangerColor = new Color(1f, 0.1f, 0.1f, 1f);          // »¡°­
+    public Color normalColor = new Color(0.15f, 0.15f, 0.15f, 1f);     // Â£ï¿½ï¿½ È¸ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+    public Color warningColor = new Color(1f, 0.35f, 0.0f, 1f);        // Â£ï¿½ï¿½ ï¿½ï¿½È²(ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+    public Color dangerColor = new Color(1f, 0.1f, 0.1f, 1f);          // ï¿½ï¿½ï¿½ï¿½
 
     [Range(0f, 1f)]
-    public float warningStartRatio = 0.50f;                            // ÀÌ ºñÀ² ÀÌÇÏºÎÅÍ warningColor
+    public float warningStartRatio = 0.50f;                            // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ïºï¿½ï¿½ï¿½ warningColor
 
     [Range(0f, 1f)]
-    public float dangerStartRatio = 0.20f;                             // ÀÌ ºñÀ² ÀÌÇÏºÎÅÍ dangerColor
+    public float dangerStartRatio = 0.20f;                             // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ïºï¿½ï¿½ï¿½ dangerColor
 
     [Header("Blink By Time (Hard Steps)")]
     public bool useBlink = true;
 
-    public float warningBlinkInterval = 0.35f;                         // ÁÖÈ² ±¸°£ ±ôºıÀÓ °£°İ(ÃÊ)
-    public float dangerBlinkInterval = 0.18f;                          // »¡°­ ±¸°£ ±ôºıÀÓ °£°İ(ÃÊ)
+    public float warningBlinkInterval = 0.35f;                         // ï¿½ï¿½È² ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½)
+    public float dangerBlinkInterval = 0.18f;                          // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½)
 
     private float remainingSeconds;
     private bool isRunning;
@@ -146,7 +146,7 @@ public class GameTimer : MonoBehaviour
         int seconds = totalCentiseconds / 100;
         int centiseconds = totalCentiseconds % 100;
 
-        mainText.text = $"{seconds:00}";
+        mainText.text = $"ê³¼ì œ ì œì¶œ ë§ˆê°ê¹Œì§€{seconds:00}";
         subText.text = $".{centiseconds:00}";
 
         ApplyTimeColor_HardSteps();
