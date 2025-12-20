@@ -70,7 +70,7 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/HeartBeat/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639018394900999517
+  lastModified: 639018513698818701
   FileSizes:
   - Name: Desktop
     Value: 221248
@@ -151,7 +151,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 6605042270781459422}
   cacheVersion: 131857
-  cacheTime: 639018394901005824
+  cacheTime: 639018513698844294
   SerializableEventsDict:
   - key: event:/MouseClick
     index: 0
@@ -172,7 +172,7 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/HeartBeat/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639018394901005824
+  lastModified: 639018513698844294
   FileSizes:
   - Name: Desktop
     Value: 1022

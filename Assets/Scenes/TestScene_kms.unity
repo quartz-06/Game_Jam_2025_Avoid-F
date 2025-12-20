@@ -888,6 +888,17 @@ MonoBehaviour:
   - {fileID: 1514705656323575588}
   startPanel: {fileID: 2038556182605630043}
   hud: {fileID: 8151369374748119520}
+  heartBeatEvent:
+    Guid:
+      Data1: -1317625031
+      Data2: 1323091832
+      Data3: 1001528755
+      Data4: 1339346920
+    Path: event:/HeartBeat
+  heartRateMin: 60
+  heartRateMax: 160
+  heartRateParameterName: HeartRate
+  heartRateSmoothSpeed: 5
 --- !u!114 &1867279145639119922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2999,6 +3010,18 @@ MonoBehaviour:
   upPercentage: 1
   pannel: {fileID: 3883996589820063623}
   gamePannel: {fileID: 8151369374748119520}
+  currentState: 0
+  pastPercentage: -1
+  feverBetweenTime: 0.2
+  feverMultiply: 1.25
+  isFever: 0
+  feverDuration: 2
+  lastClickTime: 0
+  distractionCount: 4
+  warringDuration: 2
+  decresePercent: 2
+  warringTimer: 0
+  isDistraction: 0
   clickEvent:
     Guid:
       Data1: -1936922069
@@ -3029,6 +3052,7 @@ MonoBehaviour:
   Animation_time: 0.5
   Shake_power: 5
   Shake_speed: 10
+  valueText: {fileID: 0}
 --- !u!114 &7852745697079658068
 MonoBehaviour:
   m_ObjectHideFlags: 0

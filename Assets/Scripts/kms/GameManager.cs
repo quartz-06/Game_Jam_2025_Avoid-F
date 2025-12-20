@@ -1,6 +1,10 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+using FMOD.Studio;
+using FMODUnity;
 
 
 
@@ -18,6 +22,25 @@ public class GameManager : MonoBehaviour
 
     public GameObject hud;
 
+
+
+    [Header("FMOD - HeartBeat")]
+    public EventReference heartBeatEvent;
+
+    [Range(60f, 160f)]
+    public float heartRateMin = 60f;
+
+    [Range(60f, 160f)]
+    public float heartRateMax = 160f;
+
+    public string heartRateParameterName = "HeartRate";
+
+    [Header("HeartBeat Smoothing")]
+    public float heartRateSmoothSpeed = 5f;
+
+    private float currentHeartRate = 60f;
+
+
     private bool isPlaying = false;
 
     private Coroutine katalkCoroutine;
@@ -25,11 +48,20 @@ public class GameManager : MonoBehaviour
     private List<Coroutine> adCoroutines = new List<Coroutine>();
 
 
-    // ���� ��� ���� ���� ���� ����Ʈ
+    // 현재 광고창 위치 중복 방지용 점유 리스트
     private HashSet<Transform> occupiedSpawnPoints = new HashSet<Transform>();
+
+
+
+    // FMOD
+    private EventInstance heartBeatInstance;
+    private bool isHeartBeatPlaying = false;
+
+
 
     private void Start()
     {
+
         if (startPanel != null)
         {
 
@@ -53,6 +85,8 @@ public class GameManager : MonoBehaviour
 
         isPlaying = false;
 
+        StopHeartBeat();
+
     }
 
 
@@ -67,13 +101,22 @@ public class GameManager : MonoBehaviour
 
         }
 
+        UpdateHeartBeatParameter();
+
         if (timer != null && !timer.IsRunning && timer.RemainingSeconds <= 0f)
         {
-           
-            taskManager.Evaluate();
+
+            if (taskManager != null)
+            {
+
+                taskManager.Evaluate();
+
+            }
+
         }
 
     }
+
 
 
     public void StartGame()
@@ -92,8 +135,9 @@ public class GameManager : MonoBehaviour
         {
 
             startPanel.SetActive(false);
-            
+
         }
+
         if (hud != null)
         {
 
@@ -111,6 +155,8 @@ public class GameManager : MonoBehaviour
         katalkCoroutine = StartCoroutine(KatalkPopupLoop());
 
         StartAdPopupsIndependently();
+
+        StartHeartBeat();
 
     }
 
@@ -156,6 +202,8 @@ public class GameManager : MonoBehaviour
 
         }
 
+        StopHeartBeat();
+
     }
 
 
@@ -187,22 +235,42 @@ public class GameManager : MonoBehaviour
 
     }
 
+
+
     public int GetActivePopCount()
     {
-        int count=0;
-        if(adPopUps!=null)
+
+        int count = 0;
+
+        if (adPopUps != null)
         {
-            foreach(var ad in adPopUps)
+
+            foreach (var ad in adPopUps)
             {
-                if(ad!=null && ad.IsShown) count++;
+
+                if (ad != null && ad.IsShown)
+                {
+
+                    count++;
+
+                }
+
             }
+
         }
-        if(katalkPopUp!=null&&katalkPopUp.IsShown)
+
+        if (katalkPopUp != null && katalkPopUp.IsShown)
         {
+
             count++;
+
         }
+
         return count;
+
     }
+
+
 
     private IEnumerator AdPopupLoop(AdPopUp ad)
     {
@@ -212,6 +280,7 @@ public class GameManager : MonoBehaviour
 
             float waitTime = Random.Range(3f, 13f);
             yield return new WaitForSeconds(waitTime);
+
             if (ad.IsShown)
             {
 
@@ -234,7 +303,7 @@ public class GameManager : MonoBehaviour
 
 
 
-    // ��� ������ ���� ����Ʈ �ϳ� ��û
+    // 광고 스폰 포인트 하나 요청
     private Transform RequestSpawnPoint(Transform[] candidates)
     {
 
@@ -275,7 +344,7 @@ public class GameManager : MonoBehaviour
 
 
 
-    // ���� ����Ʈ ��ȯ
+    // 광고 스폰 포인트 반환
     public void ReleaseSpawnPoint(Transform point)
     {
 
@@ -324,6 +393,7 @@ public class GameManager : MonoBehaviour
 
             float waitTime = Random.Range(3f, 7f);
             yield return new WaitForSeconds(waitTime);
+
             if (katalkPopUp != null)
             {
 
@@ -335,4 +405,140 @@ public class GameManager : MonoBehaviour
 
     }
 
+
+
+    // ---------------------------
+    // ▼ FMOD HeartBeat
+    // ---------------------------
+
+    private void StartHeartBeat()
+    {
+
+        if (isHeartBeatPlaying)
+        {
+
+            return;
+
+        }
+
+        if (heartBeatEvent.IsNull)
+        {
+
+            Debug.LogWarning("[GameManager] heartBeatEvent is not assigned.");
+            return;
+
+        }
+
+        heartBeatInstance = RuntimeManager.CreateInstance(heartBeatEvent);
+
+        int initialHR = CalculateHeartRate();
+        heartBeatInstance.setParameterByName(heartRateParameterName, initialHR);
+
+        heartBeatInstance.start();
+        isHeartBeatPlaying = true;
+
+    }
+
+
+
+    private void StopHeartBeat()
+    {
+
+        if (!isHeartBeatPlaying)
+        {
+
+            return;
+
+        }
+
+        heartBeatInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        heartBeatInstance.release();
+
+        isHeartBeatPlaying = false;
+
+    }
+
+
+
+    private void UpdateHeartBeatParameter()
+    {
+        if (!isHeartBeatPlaying)
+        {
+            return;
+        }
+
+        float targetHR = CalculateHeartRate();
+
+        currentHeartRate = Mathf.Lerp(
+            currentHeartRate,
+            targetHR,
+            Time.deltaTime * heartRateSmoothSpeed
+        );
+
+        heartBeatInstance.setParameterByName(
+            heartRateParameterName,
+            currentHeartRate
+        );
+    }
+
+
+
+
+    // HR = 60 + 80 * (p/100)^1.5 + 20 * d * (p/100)
+    // p : Current_percentage (0~100)
+    // d : isDistraction -> true = 1, false = 0
+    // 결과 : 60~160 사이 정수
+    private int CalculateHeartRate()
+    {
+
+        float p = 0f;
+
+        if (taskManager != null)
+        {
+
+            p = Mathf.Clamp(taskManager.Current_percentage, 0f, 100f);
+
+        }
+
+        float t = p / 100f;
+
+        float d = 0f;
+
+        if (taskManager != null && taskManager.isDistraction)
+        {
+
+            d = 1f;
+
+        }
+
+        float hr =
+            heartRateMin
+            + 80f * Mathf.Pow(t, 1.5f)
+            + 20f * d * t;
+
+        hr = Mathf.Clamp(hr, heartRateMin, heartRateMax);
+
+        return Mathf.RoundToInt(hr);
+
+    }
+
+
+
+    private void OnDisable()
+    {
+
+        StopHeartBeat();
+
+    }
+
+
+
+    private void OnDestroy()
+    {
+
+        StopHeartBeat();
+
+    }
+
 }
+

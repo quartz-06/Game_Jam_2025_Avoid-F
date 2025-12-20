@@ -101,12 +101,8 @@ public class Task_Manager : MonoBehaviour
     public float decresePercent=2f;
     public float warringTimer=0f;
     private bool isWrong=false;
-    private bool isDistraction=false;
+    public bool isDistraction=false;
 
-
-    // ---------------------------
-    // �� FMOD (Click One-Shot)
-    // ---------------------------
 
     [Header("FMOD")]
     public EventReference clickEvent;
