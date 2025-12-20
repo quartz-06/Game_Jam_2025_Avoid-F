@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{f4da08b4-0feb-4c98-a4fd-c91ff05fbef8}">
+		<property name="name">
+			<value>HeartRate</value>
+		</property>
+		<relationship name="folder">
+			<destination>{ed838a73-fcc6-4262-ae63-845c6db38db6}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{d288de64-68d8-4dae-b345-c9ad42c1988d}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{d288de64-68d8-4dae-b345-c9ad42c1988d}">
+		<property name="minimum">
+			<value>60</value>
+		</property>
+		<property name="maximum">
+			<value>160</value>
+		</property>
+		<property name="initialValue">
+			<value>60</value>
+		</property>
+	</object>
+</objects>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="MasterTagFolder" id="{2d0ca436-0f7f-485f-8116-8507d187e423}">
+		<property name="name">
+			<value>Master</value>
+		</property>
+		<relationship name="items">
+			<destination>{c5b43ef7-389c-46d4-ac6e-715d2b58cf96}</destination>
+			<destination>{c37694b3-9f4a-41bb-a029-b9a498f7d6e3}</destination>
+			<destination>{7ce867a0-ed58-4209-b280-147e782ccb17}</destination>
+			<destination>{9b526a6b-a180-4e42-81e2-166dc54a7214}</destination>
+			<destination>{14710c6d-bfd3-418a-8f98-3366f9e11cb0}</destination>
+			<destination>{1bb6288d-d09d-467f-9348-09b7ad634263}</destination>
+			<destination>{25977290-ebf7-4291-abaa-3d562f1f1e89}</destination>
+			<destination>{c376be73-5de9-4dc5-916a-95667d40f0b5}</destination>
+			<destination>{b2e50697-d958-4ac7-a4ec-e3ea5a719299}</destination>
+		</relationship>
+	</object>
+	<object class="Tag" id="{c5b43ef7-389c-46d4-ac6e-715d2b58cf96}">
+		<property name="name">
+			<value>async</value>
+		</property>
+	</object>
+	<object class="Tag" id="{c37694b3-9f4a-41bb-a029-b9a498f7d6e3}">
+		<property name="name">
+			<value>hold-value</value>
+		</property>
+	</object>
+	<object class="Tag" id="{7ce867a0-ed58-4209-b280-147e782ccb17}">
+		<property name="name">
+			<value>labeled-parameter</value>
+		</property>
+	</object>
+	<object class="Tag" id="{9b526a6b-a180-4e42-81e2-166dc54a7214}">
+		<property name="name">
+			<value>multi-instrument</value>
+		</property>
+	</object>
+	<object class="Tag" id="{14710c6d-bfd3-418a-8f98-3366f9e11cb0}">
+		<property name="name">
+			<value>one-shot</value>
+		</property>
+	</object>
+	<object class="Tag" id="{1bb6288d-d09d-467f-9348-09b7ad634263}">
+		<property name="name">
+			<value>parameter</value>
+		</property>
+	</object>
+	<object class="Tag" id="{25977290-ebf7-4291-abaa-3d562f1f1e89}">
+		<property name="name">
+			<value>random-modulator</value>
+		</property>
+	</object>
+	<object class="Tag" id="{c376be73-5de9-4dc5-916a-95667d40f0b5}">
+		<property name="name">
+			<value>send</value>
+		</property>
+	</object>
+	<object class="Tag" id="{b2e50697-d958-4ac7-a4ec-e3ea5a719299}">
+		<property name="name">
+			<value>spatializer</value>
+		</property>
+	</object>
+</objects>

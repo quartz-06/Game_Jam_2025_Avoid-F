@@ -380,10 +380,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: "../../OneDrive - \uC22D\uC2E4\uB300\uD559\uAD50 - Soongsil
-    University/\uBB38\uC11C/FMOD Studio/HeartBeat/HeartBeat.fspro"
-  sourceBankPath: "../../OneDrive - \uC22D\uC2E4\uB300\uD559\uAD50 - Soongsil University/\uBB38\uC11C/FMOD
-    Studio/HeartBeat/Build"
+  sourceProjectPath: Assets/Plugins/FMOD/HeartBeat/HeartBeat.fspro
+  sourceBankPath: Assets/Plugins/FMOD/HeartBeat/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1

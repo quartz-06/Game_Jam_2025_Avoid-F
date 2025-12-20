@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{14b25f6e-4625-408e-8e81-7e4705293395}">
+		<property name="assetPath">
+			<value>HeartBeat.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>21.394285714285715</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{0381cd48-3aff-4fae-b207-15109bbcc786}</destination>
+		</relationship>
+	</object>
+</objects>

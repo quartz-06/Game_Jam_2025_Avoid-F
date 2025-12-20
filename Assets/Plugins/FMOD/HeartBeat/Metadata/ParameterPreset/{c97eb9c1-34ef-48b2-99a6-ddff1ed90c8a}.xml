@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{c97eb9c1-34ef-48b2-99a6-ddff1ed90c8a}">
+		<property name="note" />
+		<property name="name">
+			<value>Click Sounds</value>
+		</property>
+		<relationship name="folder">
+			<destination>{699fbfe0-de89-4b09-ab50-2da027e5ca8a}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{1d683c9b-bfc4-4776-8512-3e077b0b0855}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{1d683c9b-bfc4-4776-8512-3e077b0b0855}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>3</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>Unuse</value>
+			<value>LowClicks</value>
+			<value>HighClicks</value>
+		</property>
+		<property name="isHeld">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>1</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+	</object>
+</objects>
