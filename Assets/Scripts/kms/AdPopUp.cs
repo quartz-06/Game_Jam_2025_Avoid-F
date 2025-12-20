@@ -44,6 +44,7 @@ public class AdPopUp : MonoBehaviour
     public string clickParamName = "Click Sounds";
 
     public string labelUnuse = "Unuse";
+    public string labelPopsUp = "PopsUp";
 
     private void Awake()
     {
@@ -117,7 +118,7 @@ public class AdPopUp : MonoBehaviour
     public void ShowAt(Transform spawnPoint)
     {
 
-
+        PlayClickOneShotWithLabel(labelPopsUp);
 
         if (isShown || spawnPoint == null)
         {

@@ -28,6 +28,7 @@ public class KatalkPopUp : MonoBehaviour
     public string clickParamName = "Click Sounds";
 
     public string labelUnuse = "Unuse";
+    public string labelPopsUp = "PopsUp";
 
     // �ʱ�ȭ
     private void Awake()
@@ -59,7 +60,7 @@ public class KatalkPopUp : MonoBehaviour
     public void Show()
     {
 
-
+    PlayClickOneShotWithLabel(labelPopsUp);
 
         if (isShown)
         {

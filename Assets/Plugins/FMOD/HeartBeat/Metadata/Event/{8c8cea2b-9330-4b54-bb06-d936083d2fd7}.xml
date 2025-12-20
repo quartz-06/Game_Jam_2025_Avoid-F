@@ -95,6 +95,7 @@ Recordings by David at Track Time Audio.</value>
 			<destination>{67bd15b9-5df2-43c7-bae7-1fa574edde00}</destination>
 			<destination>{65928f5a-a2cc-480b-81ad-4ea5633d9bd3}</destination>
 			<destination>{6493b233-3972-4a73-bda1-cb535d23b816}</destination>
+			<destination>{7473ef97-bbef-4b20-ac9f-c790ebcb2d44}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{4dd49eb2-d510-4a70-bb72-ddc3ba6bd3ba}</destination>
@@ -110,6 +111,7 @@ Recordings by David at Track Time Audio.</value>
 			<destination>{67bd15b9-5df2-43c7-bae7-1fa574edde00}</destination>
 			<destination>{65928f5a-a2cc-480b-81ad-4ea5633d9bd3}</destination>
 			<destination>{6493b233-3972-4a73-bda1-cb535d23b816}</destination>
+			<destination>{7473ef97-bbef-4b20-ac9f-c790ebcb2d44}</destination>
 		</relationship>
 		<relationship name="preset">
 			<destination>{1d683c9b-bfc4-4776-8512-3e077b0b0855}</destination>
@@ -198,6 +200,27 @@ Recordings by David at Track Time Audio.</value>
 			<destination>{83f6fbdf-38b5-44d0-a5f6-5dc86239ce85}</destination>
 		</relationship>
 	</object>
+	<object class="MultiSound" id="{7473ef97-bbef-4b20-ac9f-c790ebcb2d44}">
+		<property name="isAsync">
+			<value>true</value>
+		</property>
+		<property name="start">
+			<value>3</value>
+		</property>
+		<property name="voiceStealing">
+			<value>3</value>
+		</property>
+		<property name="name">
+			<value>Popup Sounds</value>
+		</property>
+		<relationship name="modulators">
+			<destination>{d43885cd-dfc0-4be9-94a0-2cbeeee53924}</destination>
+			<destination>{57023714-9501-4a84-a811-3044e5e0a51f}</destination>
+		</relationship>
+		<relationship name="sounds">
+			<destination>{f9ada1c1-570a-4e2a-b71e-bae40aec00bf}</destination>
+		</relationship>
+	</object>
 	<object class="EventMixerGroup" id="{4dd49eb2-d510-4a70-bb72-ddc3ba6bd3ba}">
 		<property name="name">
 			<value>MouseClick</value>
@@ -281,6 +304,33 @@ Recordings by David at Track Time Audio.</value>
 	<object class="SingleSound" id="{83f6fbdf-38b5-44d0-a5f6-5dc86239ce85}">
 		<relationship name="audioFile">
 			<destination>{6c0b03d4-c6be-40a1-a184-39e5811ffe4e}</destination>
+		</relationship>
+	</object>
+	<object class="RandomizerModulator" id="{d43885cd-dfc0-4be9-94a0-2cbeeee53924}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>pitch</value>
+		</property>
+		<property name="amount">
+			<value>8.33333015</value>
+		</property>
+	</object>
+	<object class="RandomizerModulator" id="{57023714-9501-4a84-a811-3044e5e0a51f}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>volume</value>
+		</property>
+		<property name="amount">
+			<value>3</value>
+		</property>
+	</object>
+	<object class="SingleSound" id="{f9ada1c1-570a-4e2a-b71e-bae40aec00bf}">
+		<property name="volume">
+			<value>-15</value>
+		</property>
+		<property name="pitch">
+			<value>-0.300000012</value>
+		</property>
+		<relationship name="audioFile">
+			<destination>{23ff567a-092a-4999-afe1-05fa0e4a8b91}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{d845b931-a87f-4ac1-aac7-1aadec86ae3e}">

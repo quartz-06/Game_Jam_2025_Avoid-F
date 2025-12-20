@@ -43,7 +43,7 @@ MonoBehaviour:
   Name: Click Sounds
   StudioPath: 
   Min: 0
-  Max: 2
+  Max: 3
   Default: 1
   ID:
     data1: 1489102513
@@ -54,6 +54,7 @@ MonoBehaviour:
   - Unuse
   - LowClicks
   - HighClicks
+  - PopsUp
   Exists: 1
 --- !u!114 &-6110732539599888688
 MonoBehaviour:
@@ -70,10 +71,10 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/HeartBeat/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639018604046615998
+  lastModified: 639018617028920266
   FileSizes:
   - Name: Desktop
-    Value: 1403456
+    Value: 1414176
   Exists: 1
 --- !u!114 &-3901920273676673895
 MonoBehaviour:
@@ -152,7 +153,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 6605042270781459422}
   cacheVersion: 131857
-  cacheTime: 639018604046641083
+  cacheTime: 639018617028960328
   SerializableEventsDict:
   - key: event:/MouseClick
     index: 0
@@ -203,7 +204,7 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/HeartBeat/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639018604046641083
+  lastModified: 639018617028960328
   FileSizes:
   - Name: Desktop
     Value: 1056

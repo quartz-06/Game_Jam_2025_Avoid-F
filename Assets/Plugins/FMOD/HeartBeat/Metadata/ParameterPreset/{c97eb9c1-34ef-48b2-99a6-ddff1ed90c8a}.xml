@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.03.00">
 	<object class="ParameterPreset" id="{c97eb9c1-34ef-48b2-99a6-ddff1ed90c8a}">
-		<property name="note" />
 		<property name="name">
 			<value>Click Sounds</value>
 		</property>
@@ -17,12 +16,13 @@
 			<value>2</value>
 		</property>
 		<property name="maximum">
-			<value>3</value>
+			<value>4</value>
 		</property>
 		<property name="enumerationLabels">
 			<value>Unuse</value>
 			<value>LowClicks</value>
 			<value>HighClicks</value>
+			<value>PopsUp</value>
 		</property>
 		<property name="isHeld">
 			<value>true</value>
