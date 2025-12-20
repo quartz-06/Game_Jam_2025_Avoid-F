@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
 using System;
-using Unity.Android.Gradle.Manifest;
+using NUnit.Framework;
 public class Bar_Manager : MonoBehaviour
 {
     public Slider Progress_bar;
@@ -15,6 +15,8 @@ public class Bar_Manager : MonoBehaviour
     private Vector3 Origin_scale;
     private Vector2 Origin_ancpos;
     private Coroutine Scale_corutin;
+    public Text valueText;
+    private float pastPercentage=-1f;
     private void Awake()
     {
         if(Bar_transform!=null)
@@ -23,17 +25,50 @@ public class Bar_Manager : MonoBehaviour
             Origin_ancpos=Bar_transform.anchoredPosition;
         }
     }
-    public void Update_Progress_Bar(float Current_percentage)
+    public void Update_Progress_Bar(float Current_percentage,int currentState,bool playAnimation=false)
     {
         if(Progress_bar!=null)
         {
             Progress_bar.value=Current_percentage/100f  ;
+            if(valueText!=null)
+            {
+                switch(currentState)
+                {
+                    case 0:
+                        valueText.text=$"{Progress_bar.value:P2}";
+                        valueText.color=Color.black;
+                        valueText.fontStyle=FontStyle.Normal;
+                        break;
+                    case 1:
+                        valueText.text="Fever Time!!";
+                        valueText.color=Color.yellow;
+                        valueText.fontStyle=FontStyle.Bold;
+                        break;
+                    case 2:
+                        valueText.text="정신이 산만해지고 있습니다.";
+                        valueText.color=Color.orange;
+                        break;
+                    case 3:
+                        valueText.text="정신이 산만해졌습니다.진행도가 깍입니다.";
+                        valueText.color=Color.red;
+                        valueText.fontStyle=FontStyle.Bold;
+                        return;
+                    default:
+                        break;
+                }
+            }
         }
-        if(Scale_corutin!=null)
+        bool hasChanged=Mathf.Approximately(pastPercentage,Current_percentage);
+        if (playAnimation&&!hasChanged)
         {
-            StopCoroutine(Scale_corutin);
+            if(Scale_corutin!=null)
+            {
+                StopCoroutine(Scale_corutin);
+                Reset_Transform();
+            }
+            Scale_corutin=StartCoroutine(Play_Clicked_Animation());
         }
-        Scale_corutin=StartCoroutine(Play_Clicked_Animation());
+        pastPercentage=Current_percentage;
         
     }
     private void Reset_Transform()

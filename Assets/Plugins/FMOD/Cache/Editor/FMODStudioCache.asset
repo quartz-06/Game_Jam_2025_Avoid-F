@@ -19,7 +19,7 @@ MonoBehaviour:
     Data3: 920192699
     Data4: -684770040
   Banks:
-  - {fileID: -7120808649480454526}
+  - {fileID: -6110732539599888688}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -28,27 +28,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-7120808649480454526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorBankRef
-  Path: "../../OneDrive - \uC22D\uC2E4\uB300\uD559\uAD50 - Soongsil University/\uBB38\uC11C/FMOD
-    Studio/HeartBeat/Build/Desktop/Master.bank"
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 639018369111680403
-  FileSizes:
-  - Name: Desktop
-    Value: 221248
-  Exists: 1
 --- !u!114 &-6722126471344884401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,6 +54,26 @@ MonoBehaviour:
   - Unuse
   - LowClicks
   - HighClicks
+  Exists: 1
+--- !u!114 &-6110732539599888688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorBankRef
+  Path: Assets/Plugins/FMOD/HeartBeat/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 639018394900999517
+  FileSizes:
+  - Name: Desktop
+    Value: 221248
   Exists: 1
 --- !u!114 &-3901920273676673895
 MonoBehaviour:
@@ -119,7 +118,7 @@ MonoBehaviour:
     Data3: 1001528755
     Data4: 1339346920
   Banks:
-  - {fileID: -7120808649480454526}
+  - {fileID: -6110732539599888688}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -128,27 +127,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 21394
---- !u!114 &-2000616691747692227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorBankRef
-  Path: "../../OneDrive - \uC22D\uC2E4\uB300\uD559\uAD50 - Soongsil University/\uBB38\uC11C/FMOD
-    Studio/HeartBeat/Build/Desktop/Master.strings.bank"
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 639018369111695872
-  FileSizes:
-  - Name: Desktop
-    Value: 1022
-  Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,20 +140,40 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EventCache
   EditorBanks:
-  - {fileID: -2000616691747692227}
-  - {fileID: -7120808649480454526}
+  - {fileID: 6605042270781459422}
+  - {fileID: -6110732539599888688}
   EditorEvents:
   - {fileID: -8861602442551222563}
   - {fileID: -3635030113814014292}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -7120808649480454526}
+  - {fileID: -6110732539599888688}
   StringsBanks:
-  - {fileID: -2000616691747692227}
+  - {fileID: 6605042270781459422}
   cacheVersion: 131857
-  cacheTime: 639018369111695872
+  cacheTime: 639018394901005824
   SerializableEventsDict:
   - key: event:/MouseClick
     index: 0
   - key: event:/HeartBeat
     index: 1
+--- !u!114 &6605042270781459422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorBankRef
+  Path: Assets/Plugins/FMOD/HeartBeat/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 639018394901005824
+  FileSizes:
+  - Name: Desktop
+    Value: 1022
+  Exists: 1

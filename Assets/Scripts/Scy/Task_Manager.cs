@@ -12,13 +12,6 @@
 //    public float upPercentage=0.3f;
 //    public GameObject pannel;
 //    public GameObject gamePannel;
-//    public float feverMultiply=1.25f;
-//    public bool isFever=false;
-//    public float feverBetweenTime=0.2f;
-//    public float feverDuration=2f;
-//    public float lastClickTime;
-//    private int clickCount=0;
-//    private bool Is_Finished=false;
 //    // Start is called once before the first execution of Update after the MonoBehaviour is create
 //    private void Awake()
 //    {
@@ -47,20 +40,7 @@
 //            Evaluate();
 //        }
 //    }
-//    private void TrackFever()
-//    {
-//        if(isFever) return;
-//        if(Time.time-lastClickTime>feverBetweenTime)
-//        {
-//            clickCount=0;
-//        }
-//        clickCount++;
-//        lastClickTime=Time.time;
-//        if(clickCount>=20)
-//        {
-//            StartCoroutine(FeverRoutin());
-//        }
-//    }
+
 //    private IEnumerator FeverRoutin()
 //    {
 //        Debug.Log("Fever on");
@@ -69,21 +49,6 @@
 //        yield return new WaitForSeconds(feverDuration);
 //        isFever=false;
 //        Debug.Log("Fever off");
-//    }
-//    public void Evaluate()
-//    {
-//        gameManager.StopGame();
-//        if(Current_percentage>=100f)
-//        {
-//            Current_percentage=100f;
-//            gamePannel.gameObject.SetActive(false);
-//            Finish_Game(0);
-//        }
-//        else
-//        {
-//            gamePannel.gameObject.SetActive(false);
-//            Finish_Game(1);
-//        }
 //    }
 
 //    private void Finish_Game(int iswin)
@@ -101,8 +66,11 @@
 using UnityEngine;
 using FMOD.Studio;
 using FMODUnity;
-
-
+using System.Collections;
+using NUnit.Framework;
+using Unity.AppUI.UI;
+using System;
+using Unity.AppUI.Core;
 
 public class Task_Manager : MonoBehaviour
 {
@@ -117,26 +85,41 @@ public class Task_Manager : MonoBehaviour
     public GameObject gamePannel;
 
     private bool Is_Finished = false;
+    public int currentState=0;
+    public float pastPercentage=-1f;
+    [Header("fever")]
 
+    public float feverBetweenTime=0.2f;
+    public float feverMultiply=1.25f;
+    public bool isFever=false;
+   public float feverDuration=2f;
+    public float lastClickTime;
+    private int clickCount=0;
+    [Header("distraction")]
+    public int distractionCount=4;
+    public float warringDuration=2f;
+    public float decresePercent=2f;
+    public float warringTimer=0f;
+    private bool isWrong=false;
+    private bool isDistraction=false;
 
 
     // ---------------------------
-    // ¡å FMOD (Click One-Shot)
+    // ï¿½ï¿½ FMOD (Click One-Shot)
     // ---------------------------
 
     [Header("FMOD")]
     public EventReference clickEvent;
 
     [Header("FMOD Parameter")]
-    public string clickParamName = "Click Sounds";          // FMOD ÆÄ¶ó¸ÞÅÍ ÀÌ¸§(Á¤È®È÷ ÀÏÄ¡)
+    public string clickParamName = "Click Sounds";          // FMOD ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½(ï¿½ï¿½È®ï¿½ï¿½ ï¿½ï¿½Ä¡)
 
     public string labelUnuse = "Unuse";
     public string labelLow = "LowClicks";
     public string labelHigh = "HighClicks";
 
     [Header("State Threshold")]
-    public float urgentThreshold = 50f;                     // 50% ±âÁØ
-
+    public float urgentThreshold = 50f;                     // 50% ï¿½ï¿½ï¿½ï¿½
 
 
     private void Awake()
@@ -160,8 +143,56 @@ public class Task_Manager : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if(Is_Finished||gameManager==null)
+        return;
+        CheckDistractionState();
+        DistractionHandler();
+    }
+    public void CheckDistractionState()
+    {
+        int activePopup=gameManager.GetActivePopCount();
+        if(activePopup>=distractionCount)
+        {
+            if(!isDistraction)
+            {
+                warringTimer+=Time.deltaTime;
+                if(warringTimer>=warringDuration)
+                {
+                    isDistraction=true;
+                    isWrong=false;
+                }
+                else
+                {
+                    isDistraction=false;
+                    isWrong=true;
+                }
+            }
+        }
+        else
+        {
+            isDistraction=false;
+            isWrong=false;
+            warringTimer=0f;
+        }
+    }
+    public void DistractionHandler()
+    {
+        if(isDistraction)
+        {
+            float startPercentage=Current_percentage;
+            Current_percentage-=decresePercent*Time.deltaTime;
+            Current_percentage=Mathf.Clamp(Current_percentage,0f,100f);
+             Progress_UI.Update_Progress_Bar(Current_percentage,isDistraction? 3: isWrong ? 2: isFever? 1:0,true);
 
+        }
+        else
+        {
+             Progress_UI.Update_Progress_Bar(Current_percentage,isDistraction? 3: isWrong ? 2: isFever? 1:0,false);
 
+        }
+    }
     public void On_Click_Submit_Buttons()
     {
 
@@ -171,23 +202,21 @@ public class Task_Manager : MonoBehaviour
             return;
 
         }
-
-        // 1) ÁøÇà·ü Áõ°¡
-        Current_percentage += upPercentage;
+        TrackFever();
+        // 1) ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        Current_percentage += upPercentage*(isDistraction? 1f:isFever? feverMultiply:1f);
         Current_percentage = Mathf.Clamp(Current_percentage, 0f, 100f);
 
-        // 2) UI °»½Å
+        // 2) UI ï¿½ï¿½ï¿½ï¿½
         if (Progress_UI != null)
         {
-
-            Progress_UI.Update_Progress_Bar(Current_percentage);
+            Progress_UI.Update_Progress_Bar(Current_percentage,isDistraction? 3: isWrong ? 2: isFever? 1:0,true);
 
         }
-
-        // 3) Å¬¸¯ »ç¿îµå 1È¸ Àç»ý (ÇöÀç »óÅÂ¿¡ ¸Â´Â ÆÄ¶ó¸ÞÅÍ·Î)
+        // 3) Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 1È¸ ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¿ï¿½ ï¿½Â´ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½Í·ï¿½)
         PlayClickOneShotByState();
 
-        // 4) ¿Ï·á Ã³¸®
+        // 4) ï¿½Ï·ï¿½ Ã³ï¿½ï¿½
         if (Current_percentage >= 100f)
         {
 
@@ -207,13 +236,34 @@ public class Task_Manager : MonoBehaviour
     }
 
 
-
+        private void TrackFever()
+    {
+        if(isFever) return;
+        if(Time.time-lastClickTime>feverBetweenTime)
+        {
+            clickCount=0;
+        }
+        clickCount++;
+        lastClickTime=Time.time;
+        if(clickCount>=20)
+        {
+            StartCoroutine(FeverRoutin());
+        }
+    }
+    private IEnumerator FeverRoutin()
+    {
+        Debug.Log("Fever on");
+        isFever=true;
+        clickCount=0;
+        yield return new WaitForSeconds(feverDuration);
+        isFever=false;
+        Debug.Log("Fever off");
+   }
     private void PlayClickOneShotByState()
     {
 
         if (clickEvent.IsNull)
-        {
-
+        {   
             return;
 
         }
@@ -222,8 +272,8 @@ public class Task_Manager : MonoBehaviour
 
         EventInstance instance = RuntimeManager.CreateInstance(clickEvent);
 
-        // ÆÄ¶ó¸ÞÅÍ°¡ 'Labeled Parameter'¶ó¸é ÀÌ ¹æ½ÄÀÌ °¡Àå ¾ÈÀüÇÔ
-        // (FMOD Studio¿¡¼­ Unuse/LowClicks/HighClicks Ã³·³ ¶óº§·Î ±¸ºÐµÇ´Â °æ¿ì)
+        // ï¿½Ä¶ï¿½ï¿½ï¿½Í°ï¿½ 'Labeled Parameter'ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        // (FMOD Studioï¿½ï¿½ï¿½ï¿½ Unuse/LowClicks/HighClicks Ã³ï¿½ï¿½ ï¿½óº§·ï¿½ ï¿½ï¿½ï¿½ÐµÇ´ï¿½ ï¿½ï¿½ï¿½)
         instance.setParameterByNameWithLabel(clickParamName, label);
 
         instance.start();
@@ -274,15 +324,18 @@ public class Task_Manager : MonoBehaviour
 
     }
 
-
+    private void IsDistraction()
+    {
+        
+    }
 
     private void Finish_Game(int iswin)
     {
 
         Is_Finished = true;
 
-        // (¼±ÅÃ) °ÔÀÓ Á¾·á »óÅÂ¿¡¼­ Unuse·Î µÎ°í ½ÍÀ¸¸é ¿©±â¼­ 1È¸¸¸ Àç»ýÇÏ°Å³ª,
-        // Å¬¸¯ ¹öÆ°À» ºñÈ°¼ºÈ­ÇÏ´Â ÂÊÀÌ ´õ ±ò²ûÇÔ.
+        // (ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½ Unuseï¿½ï¿½ ï¿½Î°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â¼­ 1È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï°Å³ï¿½,
+        // Å¬ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
         // PlayClickOneShotWithLabel(labelUnuse);
 
         if (pannel != null)
@@ -303,8 +356,6 @@ public class Task_Manager : MonoBehaviour
     }
 
 
-
-    // ÇÊ¿äÇÏ¸é ¿ÜºÎ¿¡¼­ °­Á¦·Î ¶óº§ ÁöÁ¤ Àç»ýÇÒ ¼ö ÀÖµµ·Ï ³²°ÜµÐ ÇÔ¼ö
     private void PlayClickOneShotWithLabel(string label)
     {
 

@@ -25,15 +25,11 @@ public class GameManager : MonoBehaviour
     private List<Coroutine> adCoroutines = new List<Coroutine>();
 
 
-
     // ���� ��� ���� ���� ���� ����Ʈ
     private HashSet<Transform> occupiedSpawnPoints = new HashSet<Transform>();
 
-
-
     private void Start()
     {
-
         if (startPanel != null)
         {
 
@@ -78,7 +74,6 @@ public class GameManager : MonoBehaviour
         }
 
     }
-
 
 
     public void StartGame()
@@ -192,6 +187,23 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public int GetActivePopCount()
+    {
+        int count=0;
+        if(adPopUps!=null)
+        {
+            foreach(var ad in adPopUps)
+            {
+                if(ad!=null && ad.IsShown) count++;
+            }
+        }
+        if(katalkPopUp!=null&&katalkPopUp.IsShown)
+        {
+            count++;
+        }
+        return count;
+    }
+
     private IEnumerator AdPopupLoop(AdPopUp ad)
     {
 
@@ -200,7 +212,6 @@ public class GameManager : MonoBehaviour
 
             float waitTime = Random.Range(3f, 13f);
             yield return new WaitForSeconds(waitTime);
-
             if (ad.IsShown)
             {
 
@@ -313,7 +324,6 @@ public class GameManager : MonoBehaviour
 
             float waitTime = Random.Range(3f, 7f);
             yield return new WaitForSeconds(waitTime);
-
             if (katalkPopUp != null)
             {
 

@@ -7,18 +7,18 @@ using FMODUnity;
 public class KatalkPopUp : MonoBehaviour
 {
 
-    // À§Ä¡ ¼³Á¤
+    // ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
     public float hiddenY = -200f;
     public float shownY = 100f;
 
-    // ¾Ö´Ï¸ÞÀÌ¼Ç ¼³Á¤
+    // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
     public float slideDuration = 0.3f;
 
-    // ³»ºÎ º¯¼ö
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     private RectTransform rectTransform;
     private Coroutine moveCoroutine;
     private bool isShown = false;
-
+    public bool IsShown =>isShown;
     [Header("FMOD")]
     public EventReference clickEvent;
 
@@ -29,7 +29,7 @@ public class KatalkPopUp : MonoBehaviour
 
     public string labelUnuse = "Unuse";
 
-    // ÃÊ±âÈ­
+    // ï¿½Ê±ï¿½È­
     private void Awake()
     {
 
@@ -41,7 +41,7 @@ public class KatalkPopUp : MonoBehaviour
 
     }
 
-    // Å×½ºÆ®¿ë ÀÔ·Â (³ªÁß¿¡ Á¦°Å ¿¹Á¤)
+    // ï¿½×½ï¿½Æ®ï¿½ï¿½ ï¿½Ô·ï¿½ (ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
     private void Update()
     {
 
@@ -55,7 +55,7 @@ public class KatalkPopUp : MonoBehaviour
 
     }
 
-    // ¿ÜºÎ È£Ãâ¿ë
+    // ï¿½Üºï¿½ È£ï¿½ï¿½ï¿½
     public void Show()
     {
 
@@ -86,7 +86,7 @@ public class KatalkPopUp : MonoBehaviour
 
     }
 
-    // ³»ºÎ ÀÌµ¿ Ã³¸®
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ Ã³ï¿½ï¿½
     private void StartMove(float fromY, float toY, bool setShownState)
     {
 
