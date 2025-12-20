@@ -610,7 +610,12 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public Transform RequestSpawnPointForExternal(Transform[] candidates)
+    {
 
+        return RequestSpawnPoint(candidates);
+
+    }
 
     private void OnDisable()
     {
