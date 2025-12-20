@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+using FMOD.Studio;
+using FMODUnity;
 
 public class AdPopUp : MonoBehaviour
 {
@@ -34,7 +35,15 @@ public class AdPopUp : MonoBehaviour
 
     private Transform currentSpawnPoint;
 
+    [Header("FMOD")]
+    public EventReference clickEvent;
 
+
+
+    [Header("FMOD Parameter")]
+    public string clickParamName = "Click Sounds";
+
+    public string labelUnuse = "Unuse";
 
     private void Awake()
     {
@@ -142,6 +151,8 @@ public class AdPopUp : MonoBehaviour
 
         }
 
+        PlayClickOneShotWithLabel(labelUnuse);
+
         if (fadeCoroutine != null)
         {
 
@@ -232,6 +243,23 @@ public class AdPopUp : MonoBehaviour
             transform.localPosition = point.localPosition;
 
         }
+
+    }
+
+    private void PlayClickOneShotWithLabel(string label)
+    {
+
+        if (clickEvent.IsNull)
+        {
+
+            return;
+
+        }
+
+        EventInstance instance = RuntimeManager.CreateInstance(clickEvent);
+        instance.setParameterByNameWithLabel(clickParamName, label);
+        instance.start();
+        instance.release();
 
     }
 

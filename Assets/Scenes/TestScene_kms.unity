@@ -750,6 +750,15 @@ MonoBehaviour:
   - {fileID: 7460306587151159092}
   - {fileID: 6455582528158929710}
   - {fileID: 5799272460589893645}
+  clickEvent:
+    Guid:
+      Data1: -1936922069
+      Data2: 1263833904
+      Data3: 920192699
+      Data4: -684770040
+    Path: event:/MouseClick
+  clickParamName: Click Sounds
+  labelUnuse: Unuse
 --- !u!114 &1569403604677083862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2122,6 +2131,15 @@ MonoBehaviour:
   hiddenY: -300
   shownY: 120
   slideDuration: 0.25
+  clickEvent:
+    Guid:
+      Data1: -1936922069
+      Data2: 1263833904
+      Data3: 920192699
+      Data4: -684770040
+    Path: event:/MouseClick
+  clickParamName: Click Sounds
+  labelUnuse: Unuse
 --- !u!1 &5681364064604959286
 GameObject:
   m_ObjectHideFlags: 0
@@ -2633,6 +2651,15 @@ MonoBehaviour:
   - {fileID: 7460306587151159092}
   - {fileID: 6455582528158929710}
   - {fileID: 5799272460589893645}
+  clickEvent:
+    Guid:
+      Data1: -1936922069
+      Data2: 1263833904
+      Data3: 920192699
+      Data4: -684770040
+    Path: event:/MouseClick
+  clickParamName: Click Sounds
+  labelUnuse: Unuse
 --- !u!1 &6751479958190212959
 GameObject:
   m_ObjectHideFlags: 0

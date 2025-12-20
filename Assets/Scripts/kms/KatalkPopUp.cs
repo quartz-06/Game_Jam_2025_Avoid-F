@@ -1,6 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
+using FMOD.Studio;
+using FMODUnity;
+
 public class KatalkPopUp : MonoBehaviour
 {
 
@@ -15,6 +18,16 @@ public class KatalkPopUp : MonoBehaviour
     private RectTransform rectTransform;
     private Coroutine moveCoroutine;
     private bool isShown = false;
+
+    [Header("FMOD")]
+    public EventReference clickEvent;
+
+
+
+    [Header("FMOD Parameter")]
+    public string clickParamName = "Click Sounds";
+
+    public string labelUnuse = "Unuse";
 
     // √ ±‚»≠
     private void Awake()
@@ -67,6 +80,8 @@ public class KatalkPopUp : MonoBehaviour
 
         }
 
+        PlayClickOneShotWithLabel(labelUnuse);
+
         StartMove(shownY, hiddenY, false);
 
     }
@@ -108,6 +123,23 @@ public class KatalkPopUp : MonoBehaviour
         rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, toY);
 
         isShown = setShownState;
+
+    }
+
+    private void PlayClickOneShotWithLabel(string label)
+    {
+
+        if (clickEvent.IsNull)
+        {
+
+            return;
+
+        }
+
+        EventInstance instance = RuntimeManager.CreateInstance(clickEvent);
+        instance.setParameterByNameWithLabel(clickParamName, label);
+        instance.start();
+        instance.release();
 
     }
 
