@@ -198,7 +198,7 @@ public class GameManager : MonoBehaviour
         while (isPlaying)
         {
 
-            float waitTime = Random.Range(3f, 5f);
+            float waitTime = Random.Range(3f, 13f);
             yield return new WaitForSeconds(waitTime);
 
             if (ad.IsShown)
