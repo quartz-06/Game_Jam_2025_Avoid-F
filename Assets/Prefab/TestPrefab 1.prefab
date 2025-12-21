@@ -988,85 +988,6 @@ MonoBehaviour:
   clickParamName: Click Sounds
   labelUnuse: Unuse
   labelPopsUp: PopsUp
---- !u!1 &2368807926124332251
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6875335408218203590}
-  - component: {fileID: 3716041396624981699}
-  - component: {fileID: 4023618775445388316}
-  m_Layer: 5
-  m_Name: TitleText
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &6875335408218203590
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2368807926124332251}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8670175818946140441}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 300}
-  m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &3716041396624981699
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2368807926124332251}
-  m_CullTransparentMesh: 1
---- !u!114 &4023618775445388316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2368807926124332251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: "\uC81C\uBAA9"
 --- !u!1 &2395501069064800883
 GameObject:
   m_ObjectHideFlags: 0
@@ -1539,8 +1460,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -19.92, y: -139.51}
-  m_SizeDelta: {x: 250.16, y: 122.59}
+  m_AnchoredPosition: {x: -19.92, y: -183.42448}
+  m_SizeDelta: {x: 250.16, y: 210.419}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2730502272024192624
 CanvasRenderer:
@@ -1572,7 +1493,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 40
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -2723,16 +2644,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5414672750059515133}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8815501618842254848}
+  m_Father: {fileID: 8927327469486875569}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -65, y: 96}
+  m_AnchoredPosition: {x: -88.20178, y: 83.88306}
   m_SizeDelta: {x: 160, y: 53.305}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6175296728288804583
@@ -3164,7 +3085,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   timer: {fileID: 7728839553384787239}
-  katalkPopUp: {fileID: 5153482008311625349}
+  katalkPopUps: []
   taskManager: {fileID: 5620587162225621647}
   adPopUps:
   - {fileID: 7774831542807212542}
@@ -3227,8 +3148,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Task_Manager
   Progress_UI: {fileID: 8322353714022565328}
   gameManager: {fileID: 4229160733073270511}
+  buttonParticle: {fileID: 0}
+  particleNum: 10
+  failcount: 0
   Current_percentage: 0
-  upPercentage: 0.8
+  upPercentage: 99
   pannel: {fileID: 7858130013783742617}
   gamePannel: {fileID: 3070281789888351924}
   currentState: 0
@@ -3554,7 +3478,6 @@ RectTransform:
   m_Children:
   - {fileID: 9167343191197539532}
   - {fileID: 5450559229925826544}
-  - {fileID: 7201947421553450290}
   - {fileID: 8927327469486875569}
   - {fileID: 5076458023971804467}
   - {fileID: 7906608945878325057}
@@ -3745,7 +3668,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7201947421553450290}
   m_Father: {fileID: 8815501618842254848}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -4243,7 +4167,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 
 --- !u!1 &7512590323576382838
 GameObject:
   m_ObjectHideFlags: 0
@@ -4648,7 +4572,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6300620565191429388}
-  - {fileID: 6875335408218203590}
   m_Father: {fileID: 505088893972803636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5457,14 +5380,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1086354653830907927, guid: 4ac1979f7bdc914438aea6ce864dc4fa, type: 3}
   m_PrefabInstance: {fileID: 3849168171793577014}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5153482008311625349 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8281599216065249971, guid: 4ac1979f7bdc914438aea6ce864dc4fa, type: 3}
-  m_PrefabInstance: {fileID: 3849168171793577014}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4d7431a2e56c1744a970203d650d11e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::KatalkPopUp

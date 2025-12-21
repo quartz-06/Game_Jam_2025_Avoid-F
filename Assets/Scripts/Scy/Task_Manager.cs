@@ -70,8 +70,6 @@ using System.Collections;
 using NUnit.Framework;
 using UnityEngine.UI;
 using System;
-using Unity.AppUI.Core;
-
 public class Task_Manager : MonoBehaviour
 {
 
@@ -79,6 +77,7 @@ public class Task_Manager : MonoBehaviour
     public GameManager gameManager;
     public ParticleSystem buttonParticle;
     public int particleNum=10;
+    public int failcount=0;
 
     public float Current_percentage = 0f;
     public float upPercentage = 0.3f;
@@ -215,6 +214,7 @@ public class Task_Manager : MonoBehaviour
         }
         TrackFever();
         // 1) ����� ����
+        upPercentage=UnityEngine.Random.Range(0.6f,1.1f);
         Current_percentage += upPercentage*(isDistraction? 1f: Current_percentage>=80? 1.1f: isFever? feverMultiply:1f);
         Current_percentage = Mathf.Clamp(Current_percentage, 0f, 100f);
 
@@ -278,6 +278,10 @@ public class Task_Manager : MonoBehaviour
                 StartCoroutine(FeverRoutin());
             }
         }
+    }
+    public void Onfail()
+    {
+        failcount++;
     }
     private IEnumerator FeverRoutin()
     {
@@ -376,7 +380,7 @@ public class Task_Manager : MonoBehaviour
             if (result != null)
             {
 
-                result.Show(iswin);
+                result.Show(iswin,iswin==0?gameManager.timer.RemainingSeconds:0,maxCount,failcount);
 
             }
 

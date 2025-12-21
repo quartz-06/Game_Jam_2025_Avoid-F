@@ -25,11 +25,11 @@ public class Result_Controller : MonoBehaviour
     public float Size_multiply=2f;
     public float Animation_time=10f;
     public string Restart;
-    public void Show(int iswin)
+    public void Show(int iswin,float lasttime,int total,int failcount)
     {   
 
         StopAllCoroutines();
-        StartCoroutine(Result_Sequence(iswin));
+        StartCoroutine(Result_Sequence(iswin,lasttime,total,failcount));
     }
     private void Reset_UI(int iswin)
     {  Intro_Text.text="";
@@ -51,7 +51,7 @@ public class Result_Controller : MonoBehaviour
         Restart_buttons.gameObject.SetActive(false);  
         scorePanel.gameObject.SetActive(false);    
     }
-    private IEnumerator Result_Sequence(int iswin)
+    private IEnumerator Result_Sequence(int iswin,float lasttime,int total,int failcount)
     {
         Reset_UI(iswin);
         foreach(char Letter in Intro_full_text.ToCharArray())
@@ -68,7 +68,7 @@ public class Result_Controller : MonoBehaviour
         {
             scorePanel.gameObject.SetActive(true);
             nowTime.text=DateTime.Now.ToString("MM")+"월 "+DateTime.Now.ToString("dd")+"일 "+DateTime.Now.ToString("tt")+" "+DateTime.Now.ToString("HH")+"시"+DateTime.Now.ToString("mm")+"분";
-            Score.text="1234"; 
+            Score.text=$"총합 점수: {(lasttime*1000)+total*10-failcount*100}\n남은시간: {lasttime}\n최대연타수: {total}\n처리실패횟수: {failcount}"; 
         }
         
     }

@@ -308,7 +308,7 @@ public class GameManager : MonoBehaviour
         while (isPlaying)
         {
 
-            float waitTime = Random.Range(3f, 13f);
+            float waitTime = Random.Range(5f, 15f);
             yield return new WaitForSeconds(waitTime);
 
             if (ad.IsShown)
@@ -421,7 +421,7 @@ public class GameManager : MonoBehaviour
         while (isPlaying)
         {
 
-            float waitTime = Random.Range(3f, 7f);
+            float waitTime = Random.Range(5f, 13f);
             yield return new WaitForSeconds(waitTime);
 
             KatalkPopUp selected = PickRandomHiddenKatalk();
