@@ -164,6 +164,8 @@
 			<destination>{c3d95fd5-b578-48ed-9cd9-454a4ea5eda3}</destination>
 			<destination>{f489eab1-bb2e-4908-8422-67e64a7b524e}</destination>
 			<destination>{9d56d175-c0d0-4048-9a0a-ece35f9e7968}</destination>
+			<destination>{56aafa2c-ff1c-4e00-bd21-c94136ab0f8a}</destination>
+			<destination>{0b64a42a-8788-4945-b3ee-14c16b9dfb72}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{a4da7f78-96a2-4882-940b-2d5222783c84}" />
@@ -177,7 +179,7 @@
 	</object>
 	<object class="AutomationPoint" id="{ec2966b0-b95f-4621-8a17-b701c66b7b8d}">
 		<property name="position">
-			<value>95</value>
+			<value>90</value>
 		</property>
 		<property name="value">
 			<value>0</value>
@@ -185,26 +187,45 @@
 	</object>
 	<object class="AutomationPoint" id="{c3d95fd5-b578-48ed-9cd9-454a4ea5eda3}">
 		<property name="position">
-			<value>95.000020833333338</value>
+			<value>90.000020833333338</value>
 		</property>
 		<property name="value">
-			<value>4</value>
+			<value>3</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{f489eab1-bb2e-4908-8422-67e64a7b524e}">
 		<property name="position">
-			<value>130</value>
+			<value>140</value>
 		</property>
 		<property name="value">
-			<value>4</value>
+			<value>6</value>
+		</property>
+		<property name="curveShape">
+			<value>-0.207763672</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{9d56d175-c0d0-4048-9a0a-ece35f9e7968}">
 		<property name="position">
-			<value>130.00002083333334</value>
+			<value>140.00002083333334</value>
 		</property>
 		<property name="value">
-			<value>8</value>
+			<value>9</value>
+		</property>
+	</object>
+	<object class="AutomationPoint" id="{56aafa2c-ff1c-4e00-bd21-c94136ab0f8a}">
+		<property name="position">
+			<value>119.99997916666666</value>
+		</property>
+		<property name="value">
+			<value>3</value>
+		</property>
+	</object>
+	<object class="AutomationPoint" id="{0b64a42a-8788-4945-b3ee-14c16b9dfb72}">
+		<property name="position">
+			<value>120</value>
+		</property>
+		<property name="value">
+			<value>6</value>
 		</property>
 	</object>
 </objects>
