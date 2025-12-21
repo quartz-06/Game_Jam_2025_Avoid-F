@@ -96,6 +96,7 @@ public class Task_Manager : MonoBehaviour
     public float lastClickTime;
     private int clickCount=0;
     private int totalClickCount=0;
+    public int maxCount=-1;
     [Header("distraction")]
     public int distractionCount=4;
     public float warringDuration=2f;
@@ -148,6 +149,7 @@ public class Task_Manager : MonoBehaviour
         DistractionHandler();
         if (totalClickCount > 0 && Time.time - lastClickTime > feverBetweenTime)
         {
+            maxCount=maxCount>totalClickCount?maxCount:totalClickCount;
             totalClickCount = 0;
             clickCount = 0;
             Progress_UI.UpdateCombo(0);
@@ -244,6 +246,7 @@ public class Task_Manager : MonoBehaviour
         {
             if(Time.time-lastClickTime>feverBetweenTime)
              {
+                maxCount=maxCount>totalClickCount?maxCount:totalClickCount;
                 clickCount=0;
                 totalClickCount=0;
             }
@@ -256,6 +259,7 @@ public class Task_Manager : MonoBehaviour
             
             if(Time.time-lastClickTime>feverBetweenTime)
             {
+                maxCount=maxCount>totalClickCount?maxCount:totalClickCount;
                 clickCount=0;
                 totalClickCount=0;
             }

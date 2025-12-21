@@ -61,7 +61,7 @@ public class Bar_Manager : MonoBehaviour
                         valueText.color=Color.orange;
                         break;
                     case 3:
-                        valueText.text="정신이 산만해졌습니다.\n진행도가 깍입니다.";
+                        valueText.text="정신이 산만해졌습니다.\n진행도가 감소합니다.";
                         valueText.color=Color.red;
                         valueText.fontStyle=FontStyle.Bold;
                         break;
