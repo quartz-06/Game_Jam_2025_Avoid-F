@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     public GameTimer timer;
 
-    public KatalkPopUp katalkPopUp;
+    public KatalkPopUp[] katalkPopUps;
     public Task_Manager taskManager;
 
     public AdPopUp[] adPopUps;
@@ -213,6 +212,7 @@ public class GameManager : MonoBehaviour
         occupiedSpawnPoints.Clear();
 
         HideAllAds();
+        HideAllKatalks();
 
         if (timer != null)
         {
@@ -279,10 +279,20 @@ public class GameManager : MonoBehaviour
 
         }
 
-        if (katalkPopUp != null && katalkPopUp.IsShown)
+        if (katalkPopUps != null)
         {
 
-            count++;
+            foreach (var k in katalkPopUps)
+            {
+
+                if (k != null && k.IsShown)
+                {
+
+                    count++;
+
+                }
+
+            }
 
         }
 
@@ -414,10 +424,84 @@ public class GameManager : MonoBehaviour
             float waitTime = Random.Range(3f, 7f);
             yield return new WaitForSeconds(waitTime);
 
-            if (katalkPopUp != null)
+            KatalkPopUp selected = PickRandomHiddenKatalk();
+
+            if (selected != null)
             {
 
-                katalkPopUp.Show();
+                selected.Show();
+
+            }
+
+        }
+
+    }
+
+
+
+    private KatalkPopUp PickRandomHiddenKatalk()
+    {
+
+        if (katalkPopUps == null || katalkPopUps.Length <= 0)
+        {
+
+            return null;
+
+        }
+
+        List<KatalkPopUp> candidates = new List<KatalkPopUp>();
+
+        for (int i = 0; i < katalkPopUps.Length; i++)
+        {
+
+            KatalkPopUp k = katalkPopUps[i];
+
+            if (k == null)
+            {
+
+                continue;
+
+            }
+
+            if (!k.IsShown)
+            {
+
+                candidates.Add(k);
+
+            }
+
+        }
+
+        if (candidates.Count <= 0)
+        {
+
+            return null;
+
+        }
+
+        return candidates[Random.Range(0, candidates.Count)];
+
+    }
+
+
+
+    private void HideAllKatalks()
+    {
+
+        if (katalkPopUps == null)
+        {
+
+            return;
+
+        }
+
+        for (int i = 0; i < katalkPopUps.Length; i++)
+        {
+
+            if (katalkPopUps[i] != null)
+            {
+
+                katalkPopUps[i].Hide();
 
             }
 
@@ -429,8 +513,6 @@ public class GameManager : MonoBehaviour
 
     // ---------------------------
     // ▼ FMOD HeartRate 공유 업데이트
-    // - HeartBeat / BGM 둘 다 HeartRate 파라미터로 움직이므로
-    //   파라미터 업데이트를 하나로 통합
     // ---------------------------
 
     private void UpdateHeartRateParameter()
@@ -461,10 +543,6 @@ public class GameManager : MonoBehaviour
     }
 
 
-
-    // ---------------------------
-    // ▼ FMOD - HeartBeat
-    // ---------------------------
 
     private void StartHeartBeat()
     {
@@ -517,10 +595,6 @@ public class GameManager : MonoBehaviour
 
 
 
-    // ---------------------------
-    // ▼ FMOD - BGM
-    // ---------------------------
-
     private void StartBgm()
     {
 
@@ -572,10 +646,6 @@ public class GameManager : MonoBehaviour
 
 
 
-    // HR = 60 + 80 * (p/100)^1.5 + 20 * d * (p/100)
-    // p : Current_percentage (0~100)
-    // d : isDistraction -> true = 1, false = 0
-    // 결과 : 60~160 사이 정수(내부적으로는 float로 다룸)
     private float CalculateHeartRate()
     {
 
@@ -610,12 +680,16 @@ public class GameManager : MonoBehaviour
 
     }
 
+
+
     public Transform RequestSpawnPointForExternal(Transform[] candidates)
     {
 
         return RequestSpawnPoint(candidates);
 
     }
+
+
 
     private void OnDisable()
     {
