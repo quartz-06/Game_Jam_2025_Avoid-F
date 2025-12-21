@@ -68,7 +68,7 @@ using FMOD.Studio;
 using FMODUnity;
 using System.Collections;
 using NUnit.Framework;
-using Unity.AppUI.UI;
+using UnityEngine.UI;
 using System;
 using Unity.AppUI.Core;
 
@@ -77,6 +77,8 @@ public class Task_Manager : MonoBehaviour
 
     public Bar_Manager Progress_UI;
     public GameManager gameManager;
+    public ParticleSystem buttonParticle;
+    public int particleNum=10;
 
     public float Current_percentage = 0f;
     public float upPercentage = 0.3f;
@@ -206,6 +208,10 @@ public class Task_Manager : MonoBehaviour
 
             return;
 
+        }
+         if (buttonParticle != null)
+        {
+            buttonParticle.Emit(particleNum);
         }
         TrackFever();
         // 1) ����� ����
